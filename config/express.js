@@ -6,7 +6,6 @@ module.exports = () => {
   const app = express();
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
-  const cors = require('cors');
 
   // SETANDO VARIÁVEIS DA APLICAÇÃO
   app.set('port', process.env.PORT);
@@ -21,8 +20,7 @@ module.exports = () => {
     res.header("Access-Control-Allow-Methods", 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
     req.header("Access-Control-Allow-Methods", 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
     res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-    app.use(cors())
-    
+
     // Parseia também requisições do tipo HTML - application/x-www-form-urlencoded
     next();
   });
