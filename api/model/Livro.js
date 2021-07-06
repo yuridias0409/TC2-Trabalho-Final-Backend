@@ -1,9 +1,9 @@
 module.exports = class Livro {
-    constructor(id, nome, genero, pages, autor) { 
+    constructor(id, name, gender, pages, author) { 
         this.id = id 
-        this.nome = nome
-        this.genero = genero
+        this.name = name
+        this.gender = gender
         this.pages = pages
-        this.autor = autor
+        this.author = author
     }
 }

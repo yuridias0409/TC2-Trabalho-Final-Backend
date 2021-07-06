@@ -1,9 +1,9 @@
 require("../model/Autor.js");
 
-exports.insereAutor = function (autor, userid) {
+exports.insereAutor = function (author, userid) {
     var sqlite = require('sqlite-sync');
     sqlite.connect('mypersonallibrary.db');
-    sqlite.insert('autor', { nome: autor.nome, usuario: userid });
+    sqlite.insert('autor', { nome: author.name, usuario: userid });
     sqlite.close();
 }
 
@@ -14,10 +14,10 @@ exports.removeAutor = function (id) {
     sqlite.close();
 }
 
-exports.updateAutor = function (autor) {
+exports.updateAutor = function (author) {
     var sqlite = require('sqlite-sync');
     sqlite.connect('mypersonallibrary.db');
-    sqlite.update('autor', { nome: autor.nome }, { id: autor.id })
+    sqlite.update('autor', { nome: author.name }, { id: author.id })
     sqlite.close();
 }
 
