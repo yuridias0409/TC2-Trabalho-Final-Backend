@@ -1,14 +1,15 @@
 module.exports = app => {
     const controller = require('../controllers/LivroController')();
+    
+    var router = require("express").Router();
 
-    //POST
-    app.route('/api/allLivro').post(controller.listAllLivros);
+    router.post("/", controller.addUmLivro);
 
-    app.route('/api/listUmLivro').post(controller.listUmLivro);
+    router.get("/all/:id", controller.listAllLivros);
 
-    app.route('/api/addUmLivro').post(controller.addUmLivro);
+    router.put("/:id", controller.updateLivro);
 
-    app.route('/api/removeLivro').post(controller.removeLivro);
+    router.delete("/:id", controller.removeLivro);
 
-    app.route('/api/updateLivro').post(controller.updateLivro);
+    app.use('/api/book', router);
 }

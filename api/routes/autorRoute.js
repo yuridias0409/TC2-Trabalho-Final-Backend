@@ -1,15 +1,15 @@
 module.exports = app => {
     const controller = require('../controllers/AutorController')();
 
-    //POST
-    app.route('/api/allAutor').post(controller.listAllAutores);
+    var router = require("express").Router();
 
-    app.route('/api/listUmAutor').post(controller.listUmAutor);
+    router.post("/", controller.addUmAutor);
 
-    app.route('/api/addUmAutor').post(controller.addUmAutor);
+    router.get("/all/:id", controller.listAllAutores);
 
-    app.route('/api/removeAutor').post(controller.removeAutor);
+    router.put("/:id", controller.updateAutor);
 
-    app.route('/api/updateAutor').post(controller.updateAutor);
+    router.delete("/:id", controller.removeAutor);
 
+    app.use('/api/author', router);
 }

@@ -1,15 +1,13 @@
 module.exports = app => {
     const controller = require('../controllers/UsuarioController')();
 
-    //GET
-    app.route('/api/allUsuario').get(controller.listAllUsuarios);
+    var router = require("express").Router();
 
-    //POST
-    app.route('/api/listUmUsuario').post(controller.listUmUsuario);
+    router.post("/", controller.addUmUsuario);
 
-    app.route('/api/addUmUsuario').post(controller.addUmUsuario);
+    router.put("/:id", controller.updateUsuario);
 
-    app.route('/api/removeUsuario').post(controller.removeUsuario);
+    router.delete("/:id", controller.removeUsuario);
 
-    app.route('/api/updateUsuario').post(controller.updateUsuario);
+    app.use('/api/user', router);
 }

@@ -1,6 +1,9 @@
 module.exports = app => {
     const controller = require('../controllers/LoginController')();
 
-    //POST
-    app.route('/api/login').post(controller.validadeLogin);
+    var router = require("express").Router();
+
+    router.post("/", controller.validadeLogin);
+
+    app.use('/api/user/login', router);
 }
