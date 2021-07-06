@@ -8,30 +8,20 @@ module.exports = () => {
     
     //Retorna todos os Autores
     controller.listAllAutores = function(req, res){
-        const query = req.query;
+        const id = req.params.id;
         try {
-            return res.status(200).json({ 'status': 'Success', 'data': autorDAO.selectAllAutor(query.userid)});
+            return res.status(200).json({ 'status': 'Success', 'data': autorDAO.selectAllAutor(id)});
         } catch (error) {
             return res.status(400).json({ 'status': 'Failed', 'message': 'Nenhum autor encontrado.'});
         }  
     }
 
-    //Retorna um autor específico
-    controller.listUmAutor = function(req, res){
-        const query = req.query;
-        try {
-            return res.status(200).json({ 'status': 'Success', 'data':autorDAO.selectUmAutor(query.id)});
-        } catch (error) {
-            return res.status(400).json({ 'status': 'Failed', 'message': 'Autor não encontrado.'});
-        }  
-    }
-
     //Adiciona um autor
     controller.addUmAutor = function(req, res){
-        const query = req.query;
-        const autor = new Autor(null, query.nome);
+        const body = req.body;
+        const autor = new Autor(null, body.name);
         try {
-            autorDAO.insereAutor(autor, query.userid);
+            autorDAO.insereAutor(autor, body.userid);
             return res.status(200).json({ 'status': 'Success', 'message': 'Autor inserido com sucesso!'});
         } catch (error) {
             return res.status(400).json({ 'status': 'Failed', 'message': 'Falha na inserção do autor.'});
@@ -41,8 +31,9 @@ module.exports = () => {
     //Atualiza um autor
     controller.updateAutor = function(req, res){
         const query = req.query;
+        const id = req.params.id;
         try {
-            autorDAO.updateAutor({id: query.id, nome: query.nome});
+            autorDAO.updateAutor({id: id, nome: query.name});
             return res.status(200).json({ 'status': 'Success', 'message': 'Dados do autor foram atualizados com sucesso!'});
         } catch (error) {
             return res.status(400).json({ 'status': 'Failed', 'message': 'Falha na atualização do autor.'});
@@ -51,9 +42,9 @@ module.exports = () => {
 
     //Remove um autor
     controller.removeAutor = function(req, res){
-        const query = req.query;
+        const id = req.params.id;
         try {
-            autorDAO.removeAutor(query.id);
+            autorDAO.removeAutor(id);
             return res.status(200).json({ 'status': 'Success', 'message': 'Autor removido com sucesso!'});
         } catch (error) {
             return res.status(400).json({ 'status': 'Failed', 'message': 'Falha na remoção do autor.'});

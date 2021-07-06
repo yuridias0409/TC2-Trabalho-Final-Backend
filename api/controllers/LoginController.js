@@ -8,8 +8,8 @@ module.exports = () => {
     
     //Adiciona um usuário
     controller.validadeLogin = function(req, res){
-        const query = req.query;
-        const usuario = new Usuario(null, query.username, query.password, null);
+        const body = req.body;
+        const usuario = new Usuario(null, body.username, body.password, null);
         
         try {
             if(usuarioDAO.validateLogin(usuario.username, usuario.password)){
