@@ -33,7 +33,7 @@ exports.selectUmLivro = function (id) {
 exports.selectAllLivros = function (userid) {
     var sqlite = require('sqlite-sync');
     sqlite.connect('mypersonallibrary.db');
-    var rows = sqlite.run("SELECT * FROM livros WHERE usuario = ?", [userid]);
+    var rows = sqlite.run("SELECT l.id, l.nome, l.genero, l.pages, l.autor, a.nome as autorName, l.usuario FROM livros l, autor a WHERE l.autor = a.id AND l.usuario = ?", [userid]);
     sqlite.close();
     return rows;
 }

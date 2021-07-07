@@ -30,10 +30,11 @@ module.exports = () => {
 
     //Atualiza um autor
     controller.updateAutor = function(req, res){
-        const query = req.query;
+        const body = req.body;
         const id = req.params.id;
+
         try {
-            autorDAO.updateAutor({id: id, nome: query.name});
+            autorDAO.updateAutor({id: id, name: body.name});
             return res.status(200).json({ 'status': 'Success', 'message': 'Dados do autor foram atualizados com sucesso!'});
         } catch (error) {
             return res.status(400).json({ 'status': 'Failed', 'message': 'Falha na atualização do autor.'});

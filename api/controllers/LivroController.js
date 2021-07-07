@@ -30,9 +30,10 @@ module.exports = () => {
 
     //Atualiza um livro
     controller.updateLivro = function(req, res){
-        const query = req.query;
-        const id = req.params.id;s
-        const livro = new Livro(id, query.name, query.gender, query.pages, query.author);
+        const body = req.body;
+        console.log(body);
+        const id = req.params.id;
+        const livro = new Livro(id, body.name, body.gender, body.pages, body.author);
         try {
             livroDAO.updateLivro(livro);
             return res.status(200).json({ 'status': 'Success', 'message': 'Dados do livro foram atualizados com sucesso!'});
