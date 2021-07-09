@@ -3,6 +3,7 @@ Backend do Trabalho Final de Tópicos em Computação 2
 
 # Links:
 - Repositório: https://github.com/yuridias0409/TC2-Trabalho-Final-Backend
+- Repositório FrontEnd: https://github.com/yuridias0409/TC2-Trabalho-Final-Frontend
 - Site: https://yuridias0409.github.io/TC2-Trabalho-Final-Frontend/
 
 # Rotas:
